@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Storage Page</title>
+    <style>
+        :root {
+            --bg-color: #f4f4f4;
+            --text-color: #333;
+            --button-bg: #333;
+            --button-text: #fff;
+            --card-bg: #fff;
+            --card-shadow: rgba(0, 0, 0, 0.1);
+        }
+        .dark-mode {
+            --bg-color: #181818;
+            --text-color: #e0e0e0;
+            --button-bg: #e0e0e0;
+            --button-text: #181818;
+            --card-bg: #242424;
+            --card-shadow: rgba(255, 255, 255, 0.1);
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Arial", sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+        .theme-switcher {
+            margin-bottom: 20px;
+            padding: 12px 20px;
+            cursor: pointer;
+            border: none;
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            font-size: 16px;
+            border-radius: 8px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .theme-switcher:hover {
+            opacity: 0.8;
+        }
+        .card {
+            background-color: var(--card-bg);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px var(--card-shadow);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        .links {
+            list-style: none;
+            padding: 0;
+        }
+        .links li {
+            margin: 10px 0;
+        }
+        a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="theme-switcher" onclick="toggleTheme()">Switch Theme</button>
+        <h1>Favorite Links</h1>
+        <div class="card">
+            <ul class="links">
+                <li><a href="https://costinedoardo.github.io/Generare-Nume-Fisier-BIG-Radu/" target="_blank">Generare Nume Proiect BIG Radu</a></li>
+                <li><a href="https://costinedoardo.github.io/zombies/" target="_blank">Zombies</a></li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+            localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
+        }
+
+        function loadTheme() {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.body.classList.add('dark-mode');
+            }
+        }
+
+        window.onload = loadTheme;
+    </script>
+</body>
+</html>
